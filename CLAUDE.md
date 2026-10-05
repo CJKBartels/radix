@@ -27,13 +27,28 @@ the /design skill wherever they conflict.
   findings. Claude checks them, corrects mistakes, and points out what was
   missed. Don't hand them a summary of a method they haven't read about yet.
 
+## Recording decisions
+
+The learning log is the project record, and the final paper and
+presentation are built from it. It sits alongside the global vault rule,
+not in place of it. The two have different jobs:
+
+- **Learning log** (`docs/learning-log.md`): this project's specific
+  decisions, with alternatives and reasons.
+- **Vault**: general concepts with no project details, as the global
+  contract describes.
+
+When a design decision settles, offer to run `/log`. One decision can go
+to both: a log entry for the decision, and a vault file for the general
+idea behind it.
+
 ## Current state
 
 There is no code yet. The repo holds only the planning documents:
 
 - `docs/2026-10-01-honors-project-proposal.md` — what will be built and the planned phases.
 - `docs/2026-10-01-honors-project-evaluation.md` — how the committee will grade it.
-- `docs/learning-log.md` — design decisions and lessons, newest first. Entries are added with `/log`.
+- `docs/learning-log.md` — design decisions and lessons, newest first. Entries are added with `/log` (`.claude/skills/log/`).
 - `docs/roadmap.md` — build order by phase, with the current phase marked. Follow it over the proposal's outline.
 
 There are no build, lint, or test commands yet. Once the app is scaffolded, replace this section with the real commands (including how to run one test).
