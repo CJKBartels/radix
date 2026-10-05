@@ -3,6 +3,14 @@
 Design decisions and lessons from working in this codebase.
 Newest entries at the top.
 
+## 2026-10-02 — Parser: math.js (tentative)
+
+- **Task:** check whether math.js can turn typed equations into a tree the converter can read (spike in `spikes/mathjs/`).
+- **Decision:** math.js with `number: 'Fraction'` passes every test, so it's the choice unless Compute Engine beats it. Tested: `2x`, `3(x+1)` and `^` work. Decimals stay exact (`0.1` → `1/10`, stored with `BigInt`). math.js reads `=` as assignment, so we split on `=`, parse each side, and subtract. No `=` means simplify/expand/factor. Two or more `=`, and scientific notation, are out of scope and get a clear error message.
+- **Alternatives considered:** expr-eval, math-expression-evaluator, Nerdamer, Algebrite, algebra.js (no longer maintained); writing our own parser (a few hundred lines, with tricky cases like `-x^2`, `2^3^2` and implicit multiplication, which delays the solvers when math.js already passes); the default number type (rounds decimals to binary before the converter sees them); moving terms across `=` in the text (doing the parser's job by hand); scientific notation by text rewrite (can't tell `2e3` from `2·e`) or the `BigNumber` setting (a second number type for rarely typed input).
+- **Lesson:** exactness lost at the input edge can't be recovered later, so make values exact where they enter. Keep library types at the edge too, and translate them into our own types in the converter (*anti-corruption layer*). That boundary is also what makes swapping the parser later cheap.
+- **Revisit:** test Compute Engine (CortexJS, maintained) with the same inputs, especially `0.1` and `=`; use it only to parse, never to solve, though its solver could serve as a *test oracle*. Custom parser is a stretch goal after the core solvers. The converter must reject non-polynomials (`sin(x)`, `1/x`, `x^0.5`).
+
 ## 2026-10-01 — Language for the math
 
 - **Task:** choose whether the math core is JavaScript or C++ compiled to WebAssembly (with JavaScript for display).

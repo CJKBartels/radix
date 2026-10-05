@@ -6,6 +6,11 @@ Build order for the polynomial solver. Phases follow dependencies (what has to e
 
 **Every phase:** write tests alongside the code, and add a `/log` entry for each design decision. The final paper is assembled from the learning log.
 
+## Open questions
+
+- **Why build a solver when libraries (Compute Engine, math.js) already solve polynomials?** Write a one-to-two sentence answer for the paper's introduction and the defense.
+- **How do users enter math:** a plain text box, or a visual editor like MathLive? This is half of the rubric's research category. Decide by the end of phase 3.
+
 ## Phase 0 — Storage format ✅
 
 - One standard sparse polynomial form with exact fraction coefficients. See the learning log entry "How equations are stored".
@@ -13,7 +18,7 @@ Build order for the polynomial solver. Phases follow dependencies (what has to e
 ## Phase 1 — Research that blocks building
 
 - ✅ Language for the math: JavaScript. Pivot a single solver to C++/WebAssembly only if a realistic input takes over about a second (see learning log).
-- Evaluate parser libraries against concrete inputs: implicit multiplication (`2x`, `3(x+1)`), `^`, `=`, and decimals. The only requirement is that it outputs a tree the converter can read.
+- 🔶 Evaluate parser libraries against concrete inputs: implicit multiplication (`2x`, `3(x+1)`), `^`, `=`, and decimals. The only requirement is that it outputs a tree the converter can read. math.js passes (see learning log); next, run the same inputs through Compute Engine, then decide.
 - Decide how answers are stored: exact roots (`√2`), complex numbers, approximations, and the exact/approximate toggle.
 - Research methods for non-linear systems (for example resultants, Gröbner bases). This is the riskiest part of the project, so it's researched now even though it's built last. Prefer a method that reuses the one-variable solvers.
 
@@ -53,5 +58,6 @@ Build order for the polynomial solver. Phases follow dependencies (what has to e
 ## Phase 8 — Wrap-up
 
 - Testing focused on the solver's limits, and a limitations write-up.
+- Stretch goal: custom parser, swapped in behind the converter.
 - Assemble the paper from the learning log.
 - Defense preparation.
