@@ -1,0 +1,10 @@
+{
+  // Format with VS Code's built-in TypeScript formatter on every save.
+  "editor.formatOnSave": true,
+  "[typescript]": { "editor.defaultFormatter": "vscode.typescript-language-features" },
+  "[vue]": { "editor.defaultFormatter": "Vue.volar" },
+
+  // Then apply every ESLint fix it can make automatically (e.g. let -> const).
+  "editor.codeActionsOnSave": { "source.fixAll.eslint": "explicit" },
+  "eslint.validate": ["javascript", "typescript", "vue"]
+}

@@ -66,6 +66,7 @@ Layout: `src/math/` holds the math core and solvers (no Vue imports; see its REA
 - `npx vitest run src/math/fraction.test.ts` — run one test file.
 - `npx vitest run -t "adds"` — run only tests whose name contains "adds".
 - `npm run typecheck` — check TypeScript types. Tests and the dev server do NOT check types (they strip them), so run this before committing.
+- `npm run lint` — run ESLint on the whole project (`npx eslint --fix .` applies automatic fixes). VS Code also formats and applies ESLint fixes on save (`.vscode/settings.json`).
 - `npm run build` — typecheck, then production build into `dist/`.
 
 TypeScript is pinned to 6.x: version 7 (the native rewrite) doesn't work with `vue-tsc` yet.
