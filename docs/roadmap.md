@@ -28,7 +28,7 @@ Build order for the polynomial solver. Phases follow dependencies (what has to e
 
 ## Phase 2 — Core math (no UI)
 
-- `Fraction`: exact arithmetic on `BigInt` numerator/denominator.
+- ✅ `Fraction`: exact arithmetic on `BigInt` numerator/denominator, with tests.
 - `Polynomial`: add, multiply, raise to a power, degree, divide with remainder, derivative, GCD (Euclid's algorithm). Coefficients are reached only through `Fraction` functions, so approximate coefficients can be swapped in later for back-substitution.
 - Converter: parser tree → `Polynomial` (moves everything to one side, then expands).
 
