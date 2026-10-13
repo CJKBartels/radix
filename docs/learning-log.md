@@ -3,6 +3,15 @@
 Design decisions and lessons from working in this codebase.
 Newest entries at the top.
 
+## 2026-10-13 — Fraction: an immutable class
+
+- **Tags:** design
+- **Task:** choose the shape of `Fraction` in code.
+- **Decision:** a class with methods (`a.add(b)`). Every operation returns a new `Fraction` and never changes the old one. It's stored as a `BigInt` numerator and denominator, always in lowest terms, with the sign in the numerator and a denominator that's never 0 (zero is `0/1`).
+- **Alternatives considered:** plain functions, `add(a, b)` (`Polynomial` would import `Fraction`'s functions by name and be tied to them, so swapping in approximate coefficients would mean passing the operations in from outside). Fractions that can change in place (polynomials will share coefficient objects, e.g. when deflation copies terms, so changing one in place would silently change another: an *aliasing bug*).
+- **Lesson:** when `Polynomial` calls `coef.add()`, it works with any type that has the same methods (*polymorphism*). That's how the phase 0 rule gets put into practice. A value that never changes (*immutable*) can be shared freely, just like the number 3.
+- **Revisit:** the rule for mixing a `Fraction` with an approximate number (Phase 4).
+
 ## 2026-10-13 — Language: TypeScript instead of JavaScript
 
 - **Tags:** choice-language, design
