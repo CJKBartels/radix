@@ -23,9 +23,13 @@ the /design skill wherever they conflict.
 - **When the developer is stuck, give escalating hints.** In order: a guiding
   question, then a hint, then a pointer to the exact spot or concept. Give
   the full answer only when they ask for it directly.
-- **Research: the developer goes first.** They read the sources and bring
-  findings. Claude checks them, corrects mistakes, and points out what was
-  missed. Don't hand them a summary of a method they haven't read about yet.
+- **Research: overview first, then build.** When a method comes up that the
+  developer hasn't learned yet, Claude gives a short overview of how it
+  works: the idea and the main steps, never code. The developer builds it
+  and looks up details when they hit a roadblock. Claude checks what they
+  bring back and corrects mistakes. Don't front-load research before
+  building; learn each method when its phase arrives. Sources cited in the
+  paper still come from the developer's own reading.
 
 ## Recording decisions
 
