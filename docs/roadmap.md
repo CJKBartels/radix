@@ -19,7 +19,7 @@ Build order for the polynomial solver. Phases follow dependencies (what has to e
 
 ## Phase 1 — Research that blocks building
 
-- ✅ Language for the math: JavaScript. Pivot a single solver to C++/WebAssembly only if a realistic input takes over about a second (see learning log).
+- ✅ Language for the math: TypeScript (switched from JavaScript before any math code existed). Pivot a single solver to C++/WebAssembly only if a realistic input takes over about a second (see learning log).
 - 🔶 Evaluate parser libraries against concrete inputs: implicit multiplication (`2x`, `3(x+1)`), `^`, `=`, and decimals. The only requirement is that it outputs a tree the converter can read. math.js passes (see learning log); next, run the same inputs through Compute Engine, then decide.
 - Decide how answers are stored: exact roots (`√2`), complex numbers, approximations, and the exact/approximate toggle.
 - ✅ One-variable solve chain: square-free factorization → Rational Root Theorem + deflation loop → by degree left: 0 done, 1 `−b/a`, 2 quadratic formula, 3+ Muller (see learning log).

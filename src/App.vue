@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 // Placeholder page. The walking skeleton (roadmap phase 3) replaces this.
 </script>
 

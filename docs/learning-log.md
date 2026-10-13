@@ -3,6 +3,15 @@
 Design decisions and lessons from working in this codebase.
 Newest entries at the top.
 
+## 2026-10-13 — Language: TypeScript instead of JavaScript
+
+- **Tags:** choice-language, design
+- **Task:** decide whether to write the app in TypeScript instead of plain JavaScript, before any math code exists.
+- **Decision:** TypeScript for both the math and the Vue UI, with strict checks on. Vite and Vitest run `.ts` files directly. Types are checked separately with `vue-tsc` (`npm run typecheck`, which also runs as part of the build). Checked: mixing `1n + 1` is reported as an error before the code runs. TypeScript is pinned to 6.x, because 7 (the native rewrite) broke `vue-tsc` at setup time.
+- **Alternatives considered:** staying with JavaScript (no learning cost, but mistakes like mixing `BigInt` with regular numbers, or a coefficient type missing an operation, only show up when the code runs). TypeScript 7 (incompatible with `vue-tsc` at setup time).
+- **Lesson:** the rule from the storage decision, "polynomial code reaches coefficients only through their operations," becomes an *interface* the compiler checks. `Fraction` and any later approximate type must both satisfy it. A rule written in a document is enforced by memory. A rule written as a type is enforced by a tool. Switching languages was cheapest before any code existed.
+- **Revisit:** if typing slows progress badly, loosen the strict checks rather than dropping TypeScript. Move to TypeScript 7 once `vue-tsc` supports it. The C++/WebAssembly pivot rule from the 2026-10-01 language entry is unchanged.
+
 ## 2026-10-13 — Repeat counts: square-free decomposition (tentative)
 
 - **Tags:** research-solving, limits

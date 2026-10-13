@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    // ES2022 so BigInt literals like 3n are allowed.
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM"],
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    // strict turns on all the useful checks (no silent "any", null checks).
+    "strict": true,
+    // Vite does the actual building; TypeScript only checks types.
+    "noEmit": true,
+    "isolatedModules": true,
+    "skipLibCheck": true
+  },
+  "include": ["src/**/*.ts", "src/**/*.vue", "vite.config.ts"]
+}

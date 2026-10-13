@@ -48,14 +48,14 @@ idea behind it.
 
 ## Current state
 
-The app is scaffolded (Vite + Vue + Vitest) but holds no math yet. Planning documents:
+The app is scaffolded (Vite + Vue + TypeScript + Vitest) but holds no math yet. Planning documents:
 
 - `docs/2026-10-01-honors-project-proposal.md` — what will be built and the planned phases.
 - `docs/2026-10-01-honors-project-evaluation.md` — how the committee will grade it.
 - `docs/learning-log.md` — design decisions and lessons, newest first. Entries are added with `/log` (`.claude/skills/log/`).
 - `docs/roadmap.md` — build order by phase, with the current phase marked. Follow it over the proposal's outline.
 
-Layout: `src/math/` holds the math core and solvers (no Vue imports; see its README). `src/App.vue` and `src/main.js` are the UI. `spikes/` holds throwaway experiments with their own `package.json`, outside the app.
+Layout: `src/math/` holds the math core and solvers (no Vue imports; see its README). `src/App.vue` and `src/main.ts` are the UI. `spikes/` holds throwaway experiments with their own `package.json`, outside the app.
 
 ## Commands
 
@@ -63,15 +63,18 @@ Layout: `src/math/` holds the math core and solvers (no Vue imports; see its REA
 - `npm run dev` — start the app at http://localhost:5173.
 - `npm test` — run all tests, re-running on every file change.
 - `npx vitest run` — run all tests once.
-- `npx vitest run src/math/fraction.test.js` — run one test file.
+- `npx vitest run src/math/fraction.test.ts` — run one test file.
 - `npx vitest run -t "adds"` — run only tests whose name contains "adds".
-- `npm run build` — production build into `dist/`.
+- `npm run typecheck` — check TypeScript types. Tests and the dev server do NOT check types (they strip them), so run this before committing.
+- `npm run build` — typecheck, then production build into `dist/`.
+
+TypeScript is pinned to 6.x: version 7 (the native rewrite) doesn't work with `vue-tsc` yet.
 
 ## What the project is
 
 An undergraduate honors project: a **polynomial solver web app** that parses polynomial equations typed by the user, simplifies them, and solves them with both symbolic (exact) and numerical (approximate) methods.
 
-Planned stack: **JavaScript + Vue**. The math is JavaScript too. A slow solver may later be rewritten in C++ compiled to WebAssembly, so solvers must stay plain functions (`Polynomial` in, answer out) with no Vue, DOM, or shared state. For parsing input, use a third-party math parser if one fits. Write a custom parser only if none does. This choice is itself graded (see below), so record why a parser was picked or rejected.
+Stack: **TypeScript + Vue**. The math is TypeScript too. A slow solver may later be rewritten in C++ compiled to WebAssembly, so solvers must stay plain functions (`Polynomial` in, answer out) with no Vue, DOM, or shared state. For parsing input, use a third-party math parser if one fits. Write a custom parser only if none does. This choice is itself graded (see below), so record why a parser was picked or rejected.
 
 ## Required capabilities (from the grading rubric)
 
