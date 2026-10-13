@@ -48,14 +48,24 @@ idea behind it.
 
 ## Current state
 
-There is no code yet. The repo holds only the planning documents:
+The app is scaffolded (Vite + Vue + Vitest) but holds no math yet. Planning documents:
 
 - `docs/2026-10-01-honors-project-proposal.md` — what will be built and the planned phases.
 - `docs/2026-10-01-honors-project-evaluation.md` — how the committee will grade it.
 - `docs/learning-log.md` — design decisions and lessons, newest first. Entries are added with `/log` (`.claude/skills/log/`).
 - `docs/roadmap.md` — build order by phase, with the current phase marked. Follow it over the proposal's outline.
 
-There are no build, lint, or test commands yet. Once the app is scaffolded, replace this section with the real commands (including how to run one test).
+Layout: `src/math/` holds the math core and solvers (no Vue imports; see its README). `src/App.vue` and `src/main.js` are the UI. `spikes/` holds throwaway experiments with their own `package.json`, outside the app.
+
+## Commands
+
+- `npm install` — install dependencies.
+- `npm run dev` — start the app at http://localhost:5173.
+- `npm test` — run all tests, re-running on every file change.
+- `npx vitest run` — run all tests once.
+- `npx vitest run src/math/fraction.test.js` — run one test file.
+- `npx vitest run -t "adds"` — run only tests whose name contains "adds".
+- `npm run build` — production build into `dist/`.
 
 ## What the project is
 
