@@ -10,7 +10,7 @@ Build order for the polynomial solver. Phases follow dependencies (what has to e
 
 - **Why build a solver when libraries (Compute Engine, math.js) already solve polynomials?** Write a one-to-two sentence answer for the paper's introduction and the defense.
 - **How do users enter math:** a plain text box, or a visual editor like MathLive? This is half of the rubric's research category. Decide by the end of phase 3.
-- **Keeping repeat counts:** square-free factorization turns `(x − 1)^2` into "1, once". Decide how the chain keeps multiplicities before phase 5.
+- ✅ **Keeping repeat counts** (tentative): square-free decomposition, solving each part once. See the learning log entry "Repeat counts: square-free decomposition".
 - **Nested radicals and the cubic formula:** decide together, since they share the simplifier cost. Until then, substitution tricks stay limited to answers in shapes we already handle.
 
 ## Phase 0 — Storage format ✅
@@ -45,7 +45,7 @@ Build order for the polynomial solver. Phases follow dependencies (what has to e
 
 ## Phase 5 — One variable, exact, plus the toggle
 
-- Square-free factorization, fraction roots (rational root theorem), factoring found roots out, exact radical output, factored-form display.
+- Square-free decomposition (keeps repeat counts; compare with Yun's algorithm), fraction roots (rational root theorem), factoring found roots out, exact radical output, factored-form display.
 - Substitution tricks (`y = x^2`), limited to answers in shapes we already handle.
 - Logic that decides whether an exact answer is possible.
 - Exact/approximate toggle, with tests that both modes agree.

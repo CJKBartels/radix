@@ -3,6 +3,15 @@
 Design decisions and lessons from working in this codebase.
 Newest entries at the top.
 
+## 2026-10-13 — Repeat counts: square-free decomposition (tentative)
+
+- **Tags:** research-solving, limits
+- **Task:** keep each root's repeat count (its *multiplicity*), which the square-free step throws away: `(x − 1)^3 (x + 2)` came out as just `1, −2`.
+- **Decision:** run the square-free step in rounds. Each round takes the previous GCD `q` and computes `gcd(q, q')` and the square-free part `q ÷ gcd(q, q')`, until only a constant is left. Then divide each round's square-free part by the next round's. Division k holds exactly the roots that appear k times. Each of those polynomials is solved once by the rest of the chain, and its roots get count k. Worked by hand: `(x − 1)^3 (x + 2)` gives the square-free parts `(x − 1)(x + 2)`, `x − 1`, `x − 1`, `1`. The divisions give `x + 2` (roots appearing once), `1` (none appear twice), and `x − 1` (appears three times). Also settled: substitution (`y = x^2`, only when every power is even) sits in the degree-3+ branch, before Muller. Not yet written out: the full chain order with this step included, to be confirmed when it's built in phase 5.
+- **Alternatives considered:** re-testing the same candidate in the Rational Root Theorem loop (counts rational repeats, but misses irrational ones like `(x^2 − 2)^3`, whose roots that loop can't find). Running the whole chain again on every round (correct for exact roots, but it solves the same roots repeatedly, and Muller's results from different rounds, e.g. `2.0945514815` vs `2.0945514817`, would have to be matched with a closeness cutoff that's wrong for some input).
+- **Lesson:** take the count from *where a root came from*, not from comparing approximate numbers. Deciding whether two decimals are "the same" (*floating-point equality*) has no cutoff that's right for every input. So keep the information exact while you can, and approximate only at the last step. The standard efficient version of this method is *Yun's algorithm*.
+- **Revisit:** compare with Yun's algorithm when building phase 5. Tier 2 limit for the paper: degree-4+ polynomials that split into quadratics with no rational roots, e.g. `(x^2 − 5)(x^2 + x + 1) = x^4 + x^3 − 4x^2 − 5x − 5`, get approximate answers. Only full factoring (Kronecker's method, Tier 3) would make them exact.
+
 ## 2026-10-05 — Scope: target tier per problem type
 
 - **Tags:** research-solving, limits, design
