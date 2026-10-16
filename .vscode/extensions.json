@@ -1,4 +1,4 @@
 {
   // VS Code offers to install these when the project is opened.
-  "recommendations": ["dbaeumer.vscode-eslint", "Vue.volar"]
+  "recommendations": ["dbaeumer.vscode-eslint", "Vue.volar", "vitest.explorer"]
 }

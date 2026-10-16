@@ -18,5 +18,12 @@ export default tseslint.config(
       // Lets ESLint read the TypeScript inside <script lang="ts"> in .vue files.
       parserOptions: { parser: tseslint.parser },
     },
+    rules: {
+      // A name starting with _ means "deliberately unused", e.g. ([_, power]) => power.
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        { argsIgnorePattern: '^_', varsIgnorePattern: '^_', destructuredArrayIgnorePattern: '^_' },
+      ],
+    },
   },
 )

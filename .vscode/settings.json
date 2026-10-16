@@ -6,5 +6,10 @@
 
   // Then apply every ESLint fix it can make automatically (e.g. let -> const).
   "editor.codeActionsOnSave": { "source.fixAll.eslint": "explicit" },
-  "eslint.validate": ["javascript", "typescript", "vue"]
+  "eslint.validate": ["javascript", "typescript", "vue"],
+
+  // No Copilot code completions in TypeScript files: the math code is written by hand.
+  // Copilot Chat still works. Copilot can't be switched off per folder, only per language.
+  "github.copilot.enable": { "*": true, "typescript": false },
+  "github.copilot.nextEditSuggestions.enabled": false
 }
