@@ -104,4 +104,4 @@ class Fraction {
     }
 }
 
-export { Fraction }
+export default Fraction;

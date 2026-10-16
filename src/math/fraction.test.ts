@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { Fraction } from './fraction'
+import Fraction from './fraction'
 
 // Shorthand: f(1n, 2n) instead of new Fraction(1n, 2n).
 const f = (numerator: bigint, denominator: bigint) => new Fraction(numerator, denominator)
