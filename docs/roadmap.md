@@ -2,7 +2,7 @@
 
 Build order for the polynomial solver. Phases follow dependencies (what has to exist before what) and risk (uncertain work early). This replaces the topic-based order in the proposal's outline.
 
-**Current phase:** 1
+**Current phase:** 2 (phase 1's parser spike and answer storage are still open)
 
 **Every phase:** write tests alongside the code, and add a `/log` entry for each design decision. The final paper is assembled from the learning log.
 

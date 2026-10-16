@@ -3,6 +3,15 @@
 Design decisions and lessons from working in this codebase.
 Newest entries at the top.
 
+## 2026-10-13 — Polynomial: storage shape and rules
+
+- **Tags:** design
+- **Task:** choose how a `Polynomial` stores its terms, and which rules every polynomial must follow.
+- **Decision:** a list of terms, each `{ coefficient: Fraction, powers: { x: 2, y: 1 } }`. `Polynomial` is immutable, and its constructor enforces five rules: coefficients are `Fraction`s; terms with coefficient 0 aren't stored (the zero polynomial is an empty list); powers of 0 aren't stored (a constant has `powers: {}`); like terms are combined; and terms are sorted by total power, highest first, with ties broken by comparing powers variable by variable in alphabetical order. Checked: `x + y² + 3 + xy` sorts to `xy, y², x, 3`.
+- **Alternatives considered:** a flat list of `{ variable, power, coefficient }` (can't tell `3x²y` from `3x² + y`). A flat object `{ c: 3, x: 2, y: 1 }` (a variable named `c` collides with the coefficient). A list of `{ variableName, power }` per term (the same term can be written in several orders, and a variable can repeat). Sorting by highest single power (flips under multiplication: `y²` comes before `x`, but `x · x` comes before `y² · x`).
+- **Lesson:** rules enforced in the constructor of an immutable class hold for every object. That covers results of operations too, like the derivative of `3x` producing `x⁰`. A term order must never flip when both sides are multiplied by the same term (*monomial order*). Otherwise the leading term of a product isn't the product of the leading terms, and division and Gröbner bases break.
+- **Revisit:** Gröbner bases (phase 7) may need pure alphabetical order (*lex*) to eliminate variables. Keeping the comparison in one function makes switching cheap.
+
 ## 2026-10-13 — Fraction: an immutable class
 
 - **Tags:** design
